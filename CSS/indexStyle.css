@@ -1,0 +1,13 @@
+#indexContent {
+    position: relative;
+    margin-top: 200px;
+    margin-left: 450px;
+    font-size: 40px;
+}
+
+a.Button {
+    position: relative;
+    margin-top: 1000px;
+    margin-left: 850px;
+    font-size: 30px;
+}
