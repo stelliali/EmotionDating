@@ -1,0 +1,3 @@
+[submodule "fer2013/fer2013"]
+	path = fer2013/fer2013
+	url = https://github.com/gitshanks/fer2013.git
