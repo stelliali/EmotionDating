@@ -11,3 +11,7 @@ a.Button {
     margin-left: 850px;
     font-size: 30px;
 }
+
+body {
+    background-color: pink;
+}

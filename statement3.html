@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Emotion Dating</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="CSS/statementStyle3.css">
 </head>
 
@@ -12,12 +13,14 @@
         <video width="300" height="300" controls></video>
     </div>
 
-    <div id="user2Box">
-        <p>User 2</p>
+    <div id="countDown">
+        <h1><span id="show">Recording: 10 s</span></h1>
     </div>
 
+    <div id="line"></div>
+
     <div id="statementImg">
-        <a href="statement4.html" class="Button"><img src="image/3.jfif"></a>
+        <img src="image/3.jfif">
     </div>
 
     <div id="statement">
@@ -25,20 +28,14 @@
     </div>
 
     <div id="buttons">
-        <button type="button" id="openCamera">Open Camera</button>
         <button type="button" id="startRecording">Start Recording</button>
-        <button type="button" id="stopRecording">Stop Recording</button>
-        <button type="button" id="playVideo">Play Video</button>
-        <button type="button" id="exportVideo">Export Video</button>
+        <button type="button" id="exportVideo">Next Question</button>
     </div>
     
 </body>
 
 <script>
-    const openBtn = document.querySelector("#openCamera");  
     const startBtn = document.querySelector("#startRecording"); 
-    const stopBtn = document.querySelector("#stopRecording");  
-    const playBtn = document.querySelector("#playVideo");  
     const exportBtn = document.querySelector("#exportVideo");  
     const videoEl = document.querySelector("video");  
 
@@ -46,7 +43,7 @@
     let cameraStream = null; 
     let mediaRecorder = null; 
 
-    openBtn.addEventListener('click', () => {
+    window.addEventListener('load', () => {
         const constraints = {
             audio: true,
             video: {
@@ -67,33 +64,33 @@
     startBtn.addEventListener('click', () => {
         mediaRecorder = new MediaRecorder(cameraStream, {mimeType: 'video/webm'});
         mediaRecorder.start();
+        console.log("recording started");
         mediaRecorder.addEventListener('dataavailable', ev => {
             videoData.push(ev.data);
         });
         mediaRecorder.addEventListener('stop', () => {
             videoData = new Blob(videoData);
         });
-    });
 
-    stopBtn.addEventListener('click', () => {
-        mediaRecorder.stop();
-    });
-
-    playBtn.addEventListener('click', () => {
-        if (videoData === null) return false;
-        videoEl.srcObject = null;
-        videoEl.src = URL.createObjectURL(videoData);
-        videoEl.play();
-        videoEl.controls = true;
-        cameraStream = null;
+        var t = 9;
+        setInterval(() => {
+            if (t < 0) {
+                console.log("recording stopped");
+                mediaRecorder.stop();
+                return;
+            }
+            document.getElementById('show').innerHTML = "Recording: "+ t + "s";
+            t--;
+        }, 1000);
     });
 
     exportBtn.addEventListener('click', () => {
         if (videoData === null) return false;
         const link = document.createElement('a');
         link.href = URL.createObjectURL(videoData);
-        link.download = 'video.webm';
+        link.download = 'statement3.webm';
         link.click();
+        location = "statement4.html";
     });
 
 </script>

@@ -9,22 +9,53 @@
 
 <body>
     <div id="user1Box">
-        <p>User 1</p>
+        <video width="300" height="300" controls>User 1</video>
     </div>
 
-    <div id="user2Box">
-        <p>User 2</p>
+    <div id="countDown">
+        <h1 id="show">Recording: X s</h1>
     </div>
+
+    <div id="line"></div>
 
     <div id="startSignal">
-        <p>Dating will <a href="statement1.html" class="Button">start</a> in 10 seconds!</p>
+        <p>---Erklärung---</p>
+    </div>
+
+    <div id="buttons">
+        <button type="button" id="openCamera">Test Camera</button>
+        <button type="button" id="start">Get started</button>
     </div>
     
 </body>
 	
 
 <script>
+    const openBtn = document.querySelector("#openCamera");  
+    const start = document.querySelector("#start");
+    const videoEl = document.querySelector("video");  
 
+    openBtn.addEventListener('click', () => {
+        const constraints = {
+            audio: true,
+            video: {
+            width: 300,
+            height: 300
+            }
+        };
+        navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+            cameraStream = stream;
+            videoEl.controls = false;
+            videoEl.srcObject = cameraStream;
+            videoEl.play();
+        }).catch(info => {
+            alert('error' + info);
+        });
+    });
+
+    start.addEventListener('click', () => {{
+        location = "statement1.html"
+    }})
 </script>
 
 

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Emotion Dating</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="CSS/statementStyle4.css">
+    <link rel="stylesheet" type="text/css" href="CSS/statementStyle3.css">
 </head>
 
 <body>
@@ -19,17 +19,17 @@
 
     <div id="line"></div>
 
-    <div id="statementImg">
-        <img src="image/5.jfif">
+    <div id="statement">
+        <p>Paare die Kinder bekommen, haben keinen Spaß mehr im Leben.</p>
     </div>
 
-    <div id="statement">
-        <p>Eifersucht und ein bisschen Kontrolle ist ein Ausdruck von Liebe.</p>
-    </div>
+    <!-- <div id="statementImg">
+        <img src="image/6.jpg">
+    </div> -->
 
     <div id="buttons">
         <button type="button" id="startRecording">Start Recording</button>
-        <button type="button" id="exportVideo">Finish</button>
+        <button type="button" id="exportVideo">Next Question</button>
     </div>
     
 </body>
@@ -88,9 +88,9 @@
         if (videoData === null) return false;
         const link = document.createElement('a');
         link.href = URL.createObjectURL(videoData);
-        link.download = 'statement4.webm';
+        link.download = 'statement3.webm';
         link.click();
-        location = "result.html";
+        location = "statement4.html";
     });
 
 </script>
