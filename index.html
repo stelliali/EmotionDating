@@ -8,19 +8,33 @@
 </head>
 
 <body>
+    <div id="logo">
+        <img src="image/logo_dating.png" height="270px" width="316.8px*">
+    </div>
     <div id="indexContent">
-        <h1>Welcome to Emotion Dating</h1>
-        <p>Preventing from a broken heart - useful AI in dating</p>
+        <h1>Welcome to AImotional Dating</h1>
+    </div>
+    <div id="indexContent2">
+        <p>Preventing from a broken heart since 2022.</p>
+    </div>
+    <div id="username">
+        <form>
+            Username: <input type="text" id="usernameInput" style="height:30px;width:180px">
+        </form>
     </div>
     <div id="startButton">
-        <a href="waitRoom.html" class="Button">Get started</a>
+        <button type="button" id="start" onclick="getStarted()">Get started</button>
     </div>
+    
     
 </body>
 	
 
 <script>
-
+    function getStarted() {
+        var result = document.getElementById("usernameInput").value;
+        location.href= "waitRoom.html?name="+result;
+    }
 </script>
 
 

@@ -17,19 +17,29 @@
         <h1><span id="show">Recording: 10 s</span></h1>
     </div>
 
+    <div id="logo">
+        <img src="image/logo_dating.png" height="225x" width="264px*">
+    </div>
+
     <div id="line"></div>
 
-    <div id="statementImg">
-        <img src="image/5.jfif">
+    <div id="username">
+        <form>
+            Username: <input type="text" id="usernameInput" style="height:30px;width:180px">
+        </form>
     </div>
 
     <div id="statement">
         <p>Eifersucht und ein bisschen Kontrolle ist ein Ausdruck von Liebe.</p>
     </div>
 
+    <div id="statementImg">
+        <img src="image/5.jfif" height="400px" width="600px">
+    </div>
+
     <div id="buttons">
         <button type="button" id="startRecording">Start Recording</button>
-        <button type="button" id="exportVideo">Finish</button>
+        <button type="button" id="exportVideo">Next Question</button>
     </div>
     
 </body>
@@ -45,7 +55,7 @@
 
     window.addEventListener('load', () => {
         const constraints = {
-            audio: true,
+            // audio: true,
             video: {
             width: 300,
             height: 300
@@ -90,7 +100,7 @@
         link.href = URL.createObjectURL(videoData);
         link.download = 'statement4.webm';
         link.click();
-        location = "result.html";
+        location = "statement5.html";
     });
 
 </script>

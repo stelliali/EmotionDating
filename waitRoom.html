@@ -5,25 +5,49 @@
     <meta charset="utf-8">
     <title>Emotion Dating</title>
     <link rel = "stylesheet" type = "text/css" href = "CSS/waitRoomStyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div id="user1Box">
-        <video width="300" height="300" controls>User 1</video>
+    <div id="user1Input">
+        <video class="input_video" width="300px" height="300px" controls>User 1</video>
+    </div>
+
+    <div id="user1Output">
+        <canvas class="output_canvas" width="300px" height="300px"></canvas>
     </div>
 
     <div id="countDown">
         <h1 id="show">Recording: X s</h1>
     </div>
 
+    <div id="logo">
+        <img src="image/logo_dating.png" height="225x" width="264px*">
+    </div>
+
     <div id="line"></div>
 
+    <div id="username">
+        <form>
+            Username: <input type="text" id="usernameInput" style="height:30px;width:180px">
+        </form>
+    </div>
+    
     <div id="startSignal">
-        <p>---Erklärung---</p>
+        <p>Hallo dAiter:in! Schön, dass du hier bist... </p>
+    </div>
+
+    <div id="startSignal1">
+        <p>... und den Entanglement Test antrittst. Wir begleiten dich mit Hingabe und Technologie auf deinem Weg zum romantischen Glück.
+            Der Entanglement Test wurde auf wissenschaftlicher Basis so entwickelt, dass er deine wahren Emotionen wahrnimmt und dir anschließend geeignete Partner:innen vorschlägt. 
+           Du bekommst nun nacheinander fünf Aussagen auf deinem Bildschirm angezeigt, die jeweils zehn Sekunden zu lesen sind. Bitte lies sie dir sorgfältig durch und reagiere darauf. Je schneller desto besser. </p>
     </div>
 
     <div id="buttons">
-        <button type="button" id="openCamera">Test Camera</button>
+        <!-- <button type="button" id="openCamera">Test Camera</button> -->
         <button type="button" id="start">Get started</button>
     </div>
     
@@ -34,24 +58,84 @@
     const openBtn = document.querySelector("#openCamera");  
     const start = document.querySelector("#start");
     const videoEl = document.querySelector("video");  
-
-    openBtn.addEventListener('click', () => {
-        const constraints = {
-            audio: true,
-            video: {
-            width: 300,
-            height: 300
-            }
-        };
-        navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-            cameraStream = stream;
-            videoEl.controls = false;
-            videoEl.srcObject = cameraStream;
-            videoEl.play();
-        }).catch(info => {
-            alert('error' + info);
-        });
+    const videoElement = document.getElementsByClassName('input_video')[0];
+    const canvasElement = document.getElementsByClassName('output_canvas')[0];
+    const canvasCtx = canvasElement.getContext('2d');
+    
+    function onResults(results) {
+      canvasCtx.save();
+      canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+      canvasCtx.drawImage(
+          results.image, 0, 0, canvasElement.width, canvasElement.height);
+      if (results.multiFaceLandmarks) {
+        for (const landmarks of results.multiFaceLandmarks) {
+          drawConnectors(canvasCtx, landmarks, FACEMESH_TESSELATION,
+                         {color: '#C0C0C070', lineWidth: 1});
+          drawConnectors(canvasCtx, landmarks, FACEMESH_RIGHT_EYE, {color: '#FF3030'});
+          drawConnectors(canvasCtx, landmarks, FACEMESH_RIGHT_EYEBROW, {color: '#FF3030'});
+          drawConnectors(canvasCtx, landmarks, FACEMESH_RIGHT_IRIS, {color: '#FF3030'});
+          drawConnectors(canvasCtx, landmarks, FACEMESH_LEFT_EYE, {color: '#30FF30'});
+          drawConnectors(canvasCtx, landmarks, FACEMESH_LEFT_EYEBROW, {color: '#30FF30'});
+          drawConnectors(canvasCtx, landmarks, FACEMESH_LEFT_IRIS, {color: '#30FF30'});
+          drawConnectors(canvasCtx, landmarks, FACEMESH_FACE_OVAL, {color: '#E0E0E0'});
+          drawConnectors(canvasCtx, landmarks, FACEMESH_LIPS, {color: '#E0E0E0'});
+        }
+      }
+      canvasCtx.restore();
+    }
+    
+    const faceMesh = new FaceMesh({locateFile: (file) => {
+      return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
+    }});
+    faceMesh.setOptions({
+      maxNumFaces: 1,
+      refineLandmarks: true,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5
     });
+    faceMesh.onResults(onResults);
+    
+    const camera = new Camera(videoElement, {
+      onFrame: async () => {
+        await faceMesh.send({image: videoElement});
+      },
+      width: 300,
+      height: 300
+    });
+    camera.start();
+
+    // openBtn.addEventListener('click', () => {
+    //     const constraints = {
+    //         audio: true,
+    //         video: {
+    //         width: 300,
+    //         height: 300
+    //         }
+    //     };
+    //     navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+    //         cameraStream = stream;
+    //         videoEl.controls = false;
+    //         videoEl.srcObject = cameraStream;
+    //         videoEl.play();
+    //     }).catch(info => {
+    //         alert('error' + info);
+    //     });
+    // });
+
+    // window.addEventListener('load', () => {
+    //     var str = window.location.search;
+    //     console.log()
+    //     if (str.indexOf(name) != -1) {
+    //         // var pos_start = str.indexOf(name) + name.length + 1;
+    //         // var pos_end = str.indexOf("=", pos_start);
+    //         var username = str.slice(6)
+    //         if (username.length != 0) {
+    //             document.getElementById('usernameInput').value = str.substring(username);
+    //         } else {
+    //             alert("No value found");
+    //         }
+    //     }
+    // })
 
     start.addEventListener('click', () => {{
         location = "statement1.html"

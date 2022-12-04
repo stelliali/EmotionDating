@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Emotion Dating</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="CSS/statementStyle3.css">
+    <link rel="stylesheet" type="text/css" href="CSS/statementStyle5.css">
 </head>
 
 <body>
@@ -17,19 +17,29 @@
         <h1><span id="show">Recording: 10 s</span></h1>
     </div>
 
+    <div id="logo">
+        <img src="image/logo_dating.png" height="225x" width="264px*">
+    </div>
+
     <div id="line"></div>
+
+    <div id="username">
+        <form>
+            Username: <input type="text" id="usernameInput" style="height:30px;width:180px">
+        </form>
+    </div>
 
     <div id="statement">
         <p>Paare die Kinder bekommen, haben keinen Spaß mehr im Leben.</p>
     </div>
 
-    <!-- <div id="statementImg">
+    <div id="statementImg">
         <img src="image/6.jpg">
-    </div> -->
+    </div>
 
     <div id="buttons">
         <button type="button" id="startRecording">Start Recording</button>
-        <button type="button" id="exportVideo">Next Question</button>
+        <button type="button" id="exportVideo">Finish</button>
     </div>
     
 </body>
@@ -45,7 +55,7 @@
 
     window.addEventListener('load', () => {
         const constraints = {
-            audio: true,
+            // audio: true,
             video: {
             width: 300,
             height: 300
@@ -90,7 +100,7 @@
         link.href = URL.createObjectURL(videoData);
         link.download = 'statement3.webm';
         link.click();
-        location = "statement4.html";
+        location = "result.html";
     });
 
 </script>

@@ -13,6 +13,13 @@
     position: relative;
     margin-top: 100px;
     margin-left: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#logo {
+    position: absolute;
+    margin-top: 180px;
+    margin-left: 70px;
 }
 
 #line {
@@ -24,25 +31,34 @@
     border-left: 5px solid black;
 }
 
+#username {
+    position: absolute;
+    margin-top: 70px;
+    margin-left: 50px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 #statementImg {
     position: relative;
-    margin-top: -150px;
-    margin-left: 600px; 
+    margin-top: 50px;
+    margin-left: 850px; 
 }
 
 #statement {
     position: relative;
-    margin-top: -150px;
-    margin-left: 1000px; 
-    font-size: 50px; 
-    font-style:arial;
+    margin-top: -250px;
+    margin-left: 875px; 
+    font-size: 40px; 
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #startRecording {
     position: relative;
+    font-family: Arial, Helvetica, sans-serif;    
     width: 160px;
     height: 60px;
-    margin-top: 250px;
+    margin-top: 100px;
     margin-left: 1200px; 
     font-size: 20px;
 }
@@ -51,7 +67,7 @@
     position: relative;
     width: 160px;
     height: 60px;
-    margin-top: 150px;
+    margin-top: 50px;
     margin-left: 100px; 
     font-size: 20px;
 }

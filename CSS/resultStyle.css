@@ -1,0 +1,27 @@
+#logo {
+    position: absolute;
+    margin-top: 480px;
+    margin-left: 70px;
+}
+
+#indexContent {
+    position: relative;
+    margin-top: 50px;
+    margin-left: 400px;
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#sofie {
+    position: relative;
+    margin-top: 50px;
+    margin-left: 100px;
+    font-size: 30px;
+}
+
+#qinzi {
+    position: relative;
+    margin-top: -430px;
+    margin-left: 500px;
+    font-size: 30px;
+}

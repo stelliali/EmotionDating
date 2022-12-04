@@ -17,14 +17,24 @@
         <h1><span id="show">Recording: 10 s</span></h1>
     </div>
 
+    <div id="logo">
+        <img src="image/logo_dating.png" height="225x" width="264px*">
+    </div>
+
     <div id="line"></div>
-    
-    <div id="statementImg">
-        <img src="image/1.jfif">
+
+    <div id="username">
+        <form>
+            Username: <input type="text" id="usernameInput" style="height:30px;width:180px">
+        </form>
     </div>
 
     <div id="statement">
         <p>Sex ist für mich nebensächlich.</p>
+    </div>
+
+    <div id="statementImg">
+        <img src="image/1.jfif" height="400px" width="600px">
     </div>
 
     <div id="buttons">
@@ -45,7 +55,7 @@
 
     window.addEventListener('load', () => {
         const constraints = {
-            audio: true,
+            // audio: true,
             video: {
             width: 300,
             height: 300
