@@ -7,7 +7,8 @@ while(cap.isOpened()):
     ret, frame = cap.read()
     if ret == False:
         break
-    cv2.imwrite('tester'+str(i)+'.jpg',frame)
+    if i%3 == 0:
+        cv2.imwrite('C:\Users\SofieLouise\IdeaProjects\EmotionDating\Backend\output\tester'+str(i)+'.jpg',frame)
     i+=1
 
 cap.release()
