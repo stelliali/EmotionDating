@@ -1,6 +1,6 @@
 import cv2
 
-cap = cv2.VideoCapture('test.webm')
+cap = cv2.VideoCapture('statement5.webm')
 
 i=0
 while(cap.isOpened()):
