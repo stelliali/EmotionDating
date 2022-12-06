@@ -9,22 +9,26 @@ import shutil
 
 currentframe = 0
 
-shutil.copy('Downloads/statement1.webm', 'input/statement1.webm')
-shutil.copy('Downloads/statement2.webm', 'input/statement2.webm')
-shutil.copy('Downloads/statement3.webm', 'input/statement3.webm')
-shutil.copy('Downloads/statement4.webm', 'input/statement4.webm')
-shutil.copy('Downloads/statement5.webm', 'input/statement5.webm')
-
 while(True):
-    if exists("input/statement5.webm"):
-        cam = cv2.VideoCapture("input/statement5.webm")
-        break
+	# shutil.copy('C:/Users/stell/Downloads/statement1.webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement1.webm')
+	# shutil.copy('C:/Users/stell/Downloads/statement2.webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement2.webm')
+	# shutil.copy('C:/Users/stell/Downloads/statement3.webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement3.webm')
+	# shutil.copy('C:/Users/stell/Downloads/statement4.webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement4.webm')
+	# shutil.copy('C:/Users/stell/Downloads/statement5.webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement5.webm')
+
+	# print('running')
+	if exists("C:/Users/stell/Downloads/statement1.webm"):
+		print('video da!')
+		shutil.copy('C:/Users/stell/Downloads/statement1.webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement1.webm')
+		cam = cv2.VideoCapture("D:/ProgramData/AC/EmotionDating/Backend/input/statement1.webm")
+		print('runninng!!!!')
+		break
 		
 while(True):
 	ret,frame = cam.read()
 
 	if ret:
-		name = './data/frame' + str(currentframe) + '.jpg'
+		name = 'D:/ProgramData/AC/EmotionDating/Backend/data/frame' + str(currentframe) + '.jpg'
 		print ('Creating...' + name)
 
 		cv2.imwrite(name, frame)
@@ -42,7 +46,7 @@ currentpicture = 0
 thislist = []
 
 while(currentpicture < 76):
-	img = cv2.imread('./data/frame' + str(currentpicture) + '.jpg')
+	img = cv2.imread('D:/ProgramData/AC/EmotionDating/Backend/data/frame' + str(currentpicture) + '.jpg')
 	detector = FER(mtcnn=True)
 	print(detector.detect_emotions(img))
 	thislist.extend(detector.detect_emotions(img))
@@ -51,7 +55,7 @@ while(currentpicture < 76):
 resultlist = []
 indices = 0
 
-with open("emotionvalues.csv",'w') as file:
+with open("D:/ProgramData/AC/EmotionDating/Backend/emotionvalues.csv",'w') as file:
         writer = csv.writer(file)
         writer.writerow(['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral'])
 		
@@ -60,10 +64,10 @@ with open("emotionvalues.csv",'w') as file:
             writer.writerow(list(first))
             indices += 1
 			
-df = pd.read_csv("emotionvalues.csv")
+df = pd.read_csv("D:/ProgramData/AC/EmotionDating/Backend/emotionvalues.csv")
 
 fig = df.plot(figsize=(20, 16), fontsize=26).get_figure()
 #fig = df.plot()
-fig.savefig('result-fe/my_figureLive.png')
+fig.savefig('D:/ProgramData/AC/EmotionDating/Backend/result-fe/my_figureLive.png')
 
-plt.show()
+# plt.show()
