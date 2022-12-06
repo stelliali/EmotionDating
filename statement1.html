@@ -24,9 +24,7 @@
     <div id="line"></div>
 
     <div id="username">
-        <form>
-            Username: <input type="text" id="usernameInput" style="height:30px;width:180px">
-        </form>
+        <h1><span id="userName">Username: </span></h1>
     </div>
 
     <div id="statement">
@@ -69,6 +67,16 @@
         }).catch(info => {
             alert('error' + info);
         });
+
+        var str = window.location.search;
+        if (str.indexOf(name) != -1) {
+            var username = str.slice(6);
+            if (username.length != 0) {
+                document.getElementById('userName').innerHTML = "Username: " + username;
+            } else {
+                alert("No value found");
+            }
+        };
     });
 
     startBtn.addEventListener('click', () => {
@@ -123,7 +131,11 @@
         link.href = URL.createObjectURL(videoData);
         link.download = 'statement1.webm';
         link.click();
-        location = "statement2.html";
+        var str = window.location.search;
+        if (str.indexOf(name) != -1) {
+          var username = str.slice(6);
+        }
+        location = "statement2.html?name="+username;
     });
 
 </script>

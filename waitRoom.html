@@ -31,9 +31,7 @@
     <div id="line"></div>
 
     <div id="username">
-        <form>
-            Username: <input type="text" id="usernameInput" style="height:30px;width:180px">
-        </form>
+        <h1><span id="userName">Username: </span></h1>
     </div>
     
     <div id="startSignal">
@@ -122,23 +120,29 @@
     //     });
     // });
 
-    // window.addEventListener('load', () => {
-    //     var str = window.location.search;
-    //     console.log()
-    //     if (str.indexOf(name) != -1) {
-    //         // var pos_start = str.indexOf(name) + name.length + 1;
-    //         // var pos_end = str.indexOf("=", pos_start);
-    //         var username = str.slice(6)
-    //         if (username.length != 0) {
-    //             document.getElementById('usernameInput').value = str.substring(username);
-    //         } else {
-    //             alert("No value found");
-    //         }
-    //     }
-    // })
+    window.addEventListener('load', () => {
+        var str = window.location.search;
+        console.log(str)
+        if (str.indexOf(name) != -1) {
+            // var pos_start = str.indexOf(name) + name.length + 1;
+            // var pos_end = str.indexOf("=", pos_start);
+            var username = str.slice(6)
+            console.log(username)
+            if (username.length != 0) {
+                document.getElementById('userName').innerHTML = "Username: " + username;
+            } else {
+                alert("No value found");
+            }
+        }
+    })
 
     start.addEventListener('click', () => {{
-        location = "statement1.html"
+        var str = window.location.search;
+        if (str.indexOf(name) != -1) {
+          var username = str.slice(6)
+          console.log(username)
+        }
+        location = "statement1.html?name="+username;
     }})
 </script>
 
