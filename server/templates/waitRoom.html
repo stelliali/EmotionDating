@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Emotion Dating</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/waitRoomStyle.css') }} ">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/statementStyle.css') }} ">
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
@@ -12,45 +12,51 @@
 </head>
 
 <body>
-    <div id="user1Input">
-        <video class="input_video" width="300px" height="300px" controls>User 1</video>
+<div id="home-container">
+<div id="content">
+    <div id="sidebar-line">
+        <div id="sidebar">
+            <h1><span id="userName">Username: {{ name }}</span></h1>
+
+            <div id="user1Input" style="display:none;">
+                <video class="input_video" width="300px" height="300px" controls>User 1</video>
+            </div>
+
+            <div id="user1Box">
+                <p id="connect">Verbinde...</p>
+                <canvas class="output_canvas" width="300px" height="300px"></canvas>
+            </div>
+
+            <div id="countDown">
+                <h1><span id="show">Recording: 10 s</span></h1>
+            </div>
+
+            <div id="logo">
+                <img src="{{ url_for('static', filename='image/logo_dating.png') }} " height="225x" width="264px*">
+            </div>
+        </div>
+        <div id="line"></div>
     </div>
+    <div id="waitroom-container">
+        <div id="startSignal">
+            <p>Hallo {{ name }}! Schön, dass du hier bist... </p>
+        </div>
 
-    <div id="user1Output">
-        <canvas class="output_canvas" width="300px" height="300px"></canvas>
+        <div id="startSignal1">
+            <p>... und den Entanglement Test antrittst. Wir begleiten dich mit Hingabe und Technologie auf deinem Weg zum romantischen Glück. Der Entanglement Test wurde auf wissenschaftlicher Basis so entwickelt, dass er deine wahren Emotionen wahrnimmt und
+                dir anschließend geeignete Partner:innen vorschlägt. Du bekommst nun nacheinander 15 Aussagen auf deinem Bildschirm angezeigt, die jeweils zehn Sekunden zu lesen sind. Bitte lies sie dir sorgfältig durch und reagiere darauf. Je schneller
+                desto besser. </p>
+        </div>
+
+        <div id="buttons">
+            <!-- <button type="button" id="openCamera">Test Camera</button> -->
+            <form method="post">
+                <button type="submit" id="start">Test Starten</button>
+            </form>
+        </div>
     </div>
-
-    <div id="countDown">
-        <h1 id="show">Recording: X s</h1>
-    </div>
-
-    <div id="logo">
-        <img src="{{ url_for('static', filename='image/logo_dating.png') }} " height="225x" width="264px*">
-    </div>
-
-    <div id="line"></div>
-
-    <div id="username">
-        <h1><span id="userName">Username: {{ name }}</span></h1>
-    </div>
-
-    <div id="startSignal">
-        <p>Hallo dAiter:in! Schön, dass du hier bist... </p>
-    </div>
-
-    <div id="startSignal1">
-        <p>... und den Entanglement Test antrittst. Wir begleiten dich mit Hingabe und Technologie auf deinem Weg zum romantischen Glück. Der Entanglement Test wurde auf wissenschaftlicher Basis so entwickelt, dass er deine wahren Emotionen wahrnimmt und
-            dir anschließend geeignete Partner:innen vorschlägt. Du bekommst nun nacheinander fünf Aussagen auf deinem Bildschirm angezeigt, die jeweils zehn Sekunden zu lesen sind. Bitte lies sie dir sorgfältig durch und reagiere darauf. Je schneller
-            desto besser. </p>
-    </div>
-
-    <div id="buttons">
-        <!-- <button type="button" id="openCamera">Test Camera</button> -->
-        <form method="post">
-            <button type="submit" id="start">Get started</button>
-        </form>
-    </div>
-
+</div>
+</div>
 </body>
 
 <script src="{{ url_for('static', filename='js/waitroom.js') }} "></script>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Emotion Dating</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/statementStyle.css') }} ">
+</head>
+
+<body>
+    <div id="home-container">
+        <div id="content">
+            <div id="sidebar-line">
+                <div id="sidebar">
+                    <h1><span id="userName">Username: {{ name }}</span></h1>
+
+                    <div id="user1Box">
+                        <video width="300" height="300" controls></video>
+                    </div><!---->
+
+                    <div id="countDown">
+                        <h1><span id="show">Aufnahmezeit: 10 s</span></h1>
+                    </div>
+
+                    <div id="logo">
+                        <img src="{{ url_for('static', filename='image/logo_dating.png') }} " height="225x" width="264px*">
+                    </div>
+                </div>
+                <div id="line"></div>
+            </div>
+            <!-- get new items here -->
+
+            <div id="statement-container" style="width: 100%">
+                <h1 id="statement-heading">Aussage {{ statement_id }}</h1>
+                <div id="statement_block" style="display: none;">
+                    <div id="statement">
+                        {% for statement in statements %}
+                        <p>{{ statement }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div id="statementImg">
+                        <img src="{{ url_for('static', filename='image/' + statement_id + '.jpeg') }}" height="400px"
+                             width="600px">
+                    </div>
+                    <div id="next-item" style="display: none">
+                        {% if last == True %}
+                        <h1 id="thanks" >Vielen Dank für deine Teilnahme!</h1>
+                        {% endif %}
+                        <button type="button" class="nextItem" id="exportVideo">
+                            {% if last == False %}
+                            Nächste Aussage
+                            {% else %}
+                            Beenden
+                            {% endif %}
+                        </button>
+                    </div>
+                </div>
+                <div class="center">
+                    <button type="button" id="startRecording">Aufnahme Starten</button>
+                </div>
+            </div>
+
+            <!-- <form method="post">
+                  <button type="submit" id="moveOn">Move on</button>
+              </form>-->
+        </div>
+    </div>
+</body>
+
+<script src="{{ url_for('static', filename='js/statement.js') }} "></script>
+
+</html>

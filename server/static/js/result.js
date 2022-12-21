@@ -1,4 +1,4 @@
-window.addEventListener('load', () => {
+/*window.addEventListener('load', () => {
     var str = window.location.search;
     if (str.indexOf(name) != -1) {
         var username = str.slice(6);
@@ -8,4 +8,4 @@ window.addEventListener('load', () => {
             alert("No value found");
         }
     };
-})
+})*/

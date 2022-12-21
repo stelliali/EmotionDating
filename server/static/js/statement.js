@@ -1,6 +1,7 @@
 const startBtn = document.querySelector("#startRecording");
 const exportBtn = document.querySelector("#exportVideo");
 const videoEl = document.querySelector("video");
+const nextItem = document.getElementById('next-item');
 
 let videoData = [];
 let cameraStream = null;
@@ -23,7 +24,7 @@ window.addEventListener('load', () => {
         alert('error' + info);
     });
 
-    var str = window.location.search;
+/*    var str = window.location.search;
     if (str.indexOf(name) != -1) {
         var username = str.slice(6);
         if (username.length != 0) {
@@ -31,10 +32,13 @@ window.addEventListener('load', () => {
         } else {
             alert("No value found");
         }
-    };
+    };*/
 });
 
 startBtn.addEventListener('click', () => {
+    statement = document.getElementById('statement_block');
+    statement.style.display = "flex";
+    startBtn.style.display = "none";
     mediaRecorder = new MediaRecorder(cameraStream, {
         mimeType: 'video/webm'
     });
@@ -51,23 +55,18 @@ startBtn.addEventListener('click', () => {
     var t_1 = 3;
     setInterval(() => {
         if (t < 0) {
-            // console.log("recording stopped");
-            // mediaRecorder.stop();
+            console.log("recording stopped");
+            mediaRecorder.stop();
+            nextItem.style.display = "flex";
             return;
         }
         document.getElementById('show').innerHTML = "Recording: " + t + "s";
         t--;
     }, 1000);
 
-    setInterval(() => {
-        if (t_1 == 0) {
-            console.log("recording stopped");
-            mediaRecorder.stop();
-            return;
-        }
-        t_1--;
-    }, 1000);
 });
+
+
 
 // stopBtn.addEventListener('click', () => {
 //     mediaRecorder.stop();
@@ -84,13 +83,20 @@ startBtn.addEventListener('click', () => {
 
 exportBtn.addEventListener('click', () => {
     if (videoData === null) return false;
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(videoData);
-    link.download = 'statement1.webm';
-    link.click();
-    var str = window.location.search;
-    if (str.indexOf(name) != -1) {
-        var username = str.slice(6);
-    }
-    // location = "statement2.html?name=" + username;
+    //videoFile = URL.createObjectURL(videoData);
+    var data = new FormData()
+    data.append('file', videoData, 'file')
+
+    fetch('http://localhost:5000/video/', {
+        method: 'POST',
+        body: data
+
+    }).then((response)=>{
+        if(response.redirected){
+            window.location.href = response.url;
+        }
+    }).catch(function(e){
+        console.log(e)
+    })
 });
+
