@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Emotion Dating</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/statementStyle.css') }} ">
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
@@ -19,12 +20,12 @@
             <h1><span id="userName">Username: {{ name }}</span></h1>
 
             <div id="user1Input" style="display:none;">
-                <video class="input_video" width="300px" height="300px" controls>User 1</video>
+                <video class="input_video" width="200px" height="200px" controls>User 1</video>
             </div>
 
             <div id="user1Box">
                 <p id="connect">Verbinde...</p>
-                <canvas class="output_canvas" width="300px" height="300px"></canvas>
+                <canvas class="output_canvas" width="200px" height="200px"></canvas>
             </div>
 
             <div id="countDown">
@@ -32,7 +33,7 @@
             </div>
 
             <div id="logo">
-                <img src="{{ url_for('static', filename='image/logo_dating.png') }} " height="225x" width="264px*">
+                <img src="{{ url_for('static', filename='image/logo_dating.png') }}" width="178px">
             </div>
         </div>
         <div id="line"></div>
@@ -56,6 +57,9 @@
         </div>
     </div>
 </div>
+    <div id="phone">
+        <h1>Bitte nutze einen Computer, da momentan keine Handys unterstützt werden.</h1>
+    </div>
 </div>
 </body>
 

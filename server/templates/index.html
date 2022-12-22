@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Emotion Dating</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/statementStyle.css') }} ">
 </head>
 
@@ -13,15 +14,15 @@
             <img src="{{ url_for('static', filename='image/logo_dating.png') }}" height="270px" width="316.8px*">
         </div>
         <div id="indexContent">
-            <h1>Welcome to AImotional Dating</h1>
+            <h1 id="first-headline">Welcome to AImotional Dating</h1>
         </div>
         <div id="indexContent2">
-            <p>Preventing from a broken heart since 2022.</p>
+            <p>Preventing a broken heart since 2022.</p>
         </div>
         <div id="username">
-            <form id="form-items" action="http://localhost:5000/" method="post">
+            <form id="form-items" action="/" method="post">
                 <div>
-                Username: <input type="text" name="usernameInput" style="height:30px;width:180px;font-size:30px;" required>
+                Username: <input type="text" name="usernameInput" style="height:20px;width:120px;font-size:20px;" required>
                 </div>
                 <div id="startButton">
                     <button type="submit" id="start">Test Starten</button>

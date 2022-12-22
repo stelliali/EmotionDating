@@ -3,7 +3,7 @@ const start = document.querySelector("#start");
 const videoEl = document.querySelector("video");
 const videoElement = document.getElementsByClassName('input_video')[0];
 const canvasElement = document.getElementsByClassName('output_canvas')[0];
-const placeholder = document.getElementById("connect");
+const placeholder = document.getElementById("connect")
 const canvasCtx = canvasElement.getContext('2d');
 
 function onResults(results) {
@@ -89,21 +89,6 @@ camera.start();
 //     });
 // });
 
-/*window.addEventListener('load', () => {
-    var str = window.location.search;
-    console.log(str)
-    if (str.indexOf(name) != -1) {
-        // var pos_start = str.indexOf(name) + name.length + 1;
-        // var pos_end = str.indexOf("=", pos_start);
-        var username = str.slice(6)
-        console.log(username)
-        if (username.length != 0) {
-            document.getElementById('userName').innerHTML = "Username: " + username;
-        } else {
-            alert("No value found");
-        }
-    }
-})*/
 
 /**
 start.addEventListener('click', () => {
@@ -113,7 +98,7 @@ start.addEventListener('click', () => {
             var username = str.slice(6)
             console.log(username)
         }
-        location = "statement1.html?name=" + username;
+        location = "statement.html?name=" + username;
     }
 })
 */

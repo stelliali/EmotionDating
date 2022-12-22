@@ -87,7 +87,7 @@ exportBtn.addEventListener('click', () => {
     var data = new FormData()
     data.append('file', videoData, 'file')
 
-    fetch('http://localhost:5000/video/', {
+    fetch('/video/', {
         method: 'POST',
         body: data
 
