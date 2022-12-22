@@ -16,7 +16,17 @@ statements = [
     ["Ich finde klassische Geschlechterrollen bei Mann und Frau wichtig.", "Der Mann sollte schon meistens die Initiative übernehmen."],
     ["Ich möchte auch viel Zeit mit Freunden ohne meinen Partner verbringen."],
     ["Eifersucht und ein bisschen Kontrolle ist ein Ausdruck von Liebe."],
-    ["Paare die Kinder bekommen, haben keinen Spaß mehr im Leben."]
+    ["Paare die Kinder bekommen, haben keinen Spaß mehr im Leben."],
+    ["Mein:e Partner:in sollte eine erfolgreiche Karriere haben."],
+    ["Religion hat für mich einen sehr hohen Stellenwert."],
+    ["Sport spielt in meinem Leben eine wesentliche Rolle."],
+    ["Ich würde gerne irgendwann im Ausland leben."],
+    ["Ich bin sehr sozial und gehe gerne auf Parties."],
+    ["Ich bin verwurzelt in meiner Heimat und Familie ist mir wichtig. "],
+    ["Ich mag Gewohnheit und Stabilität und stehe neuen Dingen eher skeptisch gegenüber."],
+    ["Kunst, Kultur und Musik bedeuten mir viel."],
+    ["Jeder Bürger hat die Pflicht sich politisch einzubringen."],
+    ["Ich liebe romantische Gesten."]
 ]
 
 
