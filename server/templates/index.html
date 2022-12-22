@@ -21,12 +21,13 @@
         </div>
         <div id="username">
             <form id="form-items" action="/" method="post">
-                <div>
+                <div style="display: flex; flex-direction: column;">
+                    <div style="align-self: flex-end; margin-bottom: 1rem;">
                 Username: <input type="text" name="usernameInput" style="height:20px;width:120px;font-size:20px;" required>
-                </div>
-                <br/>
-                <div>
+                    </div>
+                    <div style="align-self: flex-end">
                 Partner: <input type="text" name="partnerInput" style="height:20px;width:120px;font-size:20px;" required>
+                    </div>
                 </div>
                 <div id="startButton">
                     <button type="submit" id="start">Test Starten</button>

@@ -35,7 +35,6 @@ def index():
     if request.method == 'POST':
         username = request.form['usernameInput']
         partner = request.form['partnerInput']
-        print(username)
         if username is None:
             return render_template("index.html")
         session["username"] = username
@@ -63,7 +62,6 @@ def statement(id):
         last = False
         if int(id) == len(statements):
             last = True
-        print(last)
         return render_template(f'statement.html', last=last, statement_id=id, statements=statement, name=session.get("username"))
     elif request.method == 'POST':
         return redirect(url_for('result'))
@@ -79,7 +77,7 @@ def video():
     # get username + id
     username = session.get("username")
     statement_id = session.get("statement_id")
-    print(username, statement_id)
+    partner = session.get("partner")
     uuid = session.get("uuid")
     files = request.files
     if 'file' not in files:
@@ -87,7 +85,7 @@ def video():
         return redirect(url_for('statement', id=statement_id))
     file = files.get('file')
     # upload to own user video folder
-    folder = os.path.join(app.config['VIDEO_FOLDER'], username + "_" + partner + "_" + str(uuid))
+    folder = os.path.join(app.config['VIDEO_FOLDER'], username + "_" + partner + "_" + str(uuid)[:5])
     os.makedirs(folder, exist_ok=True)
     filename = os.path.join(folder, f"statement_{statement_id}.webm")
     file.save(filename)
