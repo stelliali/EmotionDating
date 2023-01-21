@@ -6,11 +6,11 @@ def cosSim():
     with open('D:/ProgramData/AC/EmotionDating/Backend/emotionvalues.csv', 'r') as vec:
             reader = list(csv.reader(vec))
             for index, rows in enumerate(reader):
-                if index == 33:
+                if index == 2:
                     v1_1 = rows
-                if index == 34:
+                if index == 3:
                     v1_2 = rows
-                if index == 35:
+                if index == 4:
                     v1_3 = rows
                 
         # person 1
