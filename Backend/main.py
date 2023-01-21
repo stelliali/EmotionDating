@@ -26,10 +26,10 @@ while(True):
         dir = os.listdir(path)
 
     if len(dir) != 0:
-        print("D:/ProgramData/AC/EmotionDating/Backend/input/statement_" + str(counter) +".webm")
-        if exists("D:/ProgramData/AC/EmotionDating/Backend/input/statement_" + str(counter) +".webm") == True:
+        print("D:/ProgramData/AC/EmotionDating/Backend/input/statement_" + str(counter) +".mp4")
+        if exists("D:/ProgramData/AC/EmotionDating/Backend/input/statement_" + str(counter) +".mp4") == True:
             print("Start " + str(counter))
-            video_filename = "D:/ProgramData/AC/EmotionDating/Backend/input/statement_" + str(counter) +".webm"
+            video_filename = "D:/ProgramData/AC/EmotionDating/Backend/input/statement_" + str(counter) +".mp4"
             video = Video(video_filename)
 		
 		    # Analyze video, displaying the output
