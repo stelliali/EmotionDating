@@ -7,6 +7,7 @@ import csv
 from numpy import dot
 from numpy.linalg import norm
 import cosSimilaritylive
+import time
 
 
 print("Start")
@@ -26,10 +27,10 @@ while(True):
         dir = os.listdir(path)
 
     if len(dir) != 0:
-        print("D:/ProgramData/AC/EmotionDating/Backend/input/statement_" + str(counter) +".mp4")
-        if exists("D:/ProgramData/AC/EmotionDating/Backend/input/statement_" + str(counter) +".mp4") == True:
+        print("D:/ProgramData/AC/EmotionDating/Backend/input/statement_" + str(counter) +".webm")
+        if exists("D:/ProgramData/AC/EmotionDating/Backend/input/statement_" + str(counter) +".webm") == True:
             print("Start " + str(counter))
-            video_filename = "D:/ProgramData/AC/EmotionDating/Backend/input/statement_" + str(counter) +".mp4"
+            video_filename = "D:/ProgramData/AC/EmotionDating/Backend/input/statement_" + str(counter) +".webm"
             video = Video(video_filename)
 		
 		    # Analyze video, displaying the output
@@ -50,5 +51,7 @@ while(True):
             counter += 1
             if (len(dir) < counter):
                 break
-        
-    cosSimilaritylive.cosSim()
+    # time.sleep(70)    
+    
+
+cosSimilaritylive.cosSim()

@@ -6,11 +6,11 @@ def cosSim():
     with open('D:/ProgramData/AC/EmotionDating/Backend/emotionvalues.csv', 'r') as vec:
             reader = list(csv.reader(vec))
             for index, rows in enumerate(reader):
-                if index == 2:
+                if index == 1:
                     v1_1 = rows
-                if index == 3:
+                if index == 2:
                     v1_2 = rows
-                if index == 4:
+                if index == 3:
                     v1_3 = rows
                 
         # person 1
@@ -69,6 +69,17 @@ def cosSim():
     cos_sim_8 = dot(a_3, c_3)/(norm(a_3)*norm(c_3))
     cos_sim_9 = dot(a_3, d_3)/(norm(a_3)*norm(d_3))
     ave3 = (cos_sim_7 + cos_sim_8 + cos_sim_9)/3
-        # l.append(cos_sim)
+
+    ave1 = str(int(round(ave1 * 100, 0))) + "%"
+    ave2 = str(int(round(ave2 * 100, 0))) + "%"
+    ave3 = str(int(round(ave3 * 100, 0))) + "%"
     # return ave1, ave2, ave3
     print(ave1, ave2, ave3)
+
+
+    with open('D:/ProgramData/AC/EmotionDating/Backend/result-fe/ave1.txt','a') as f1:
+        f1.write(ave1)
+    with open('D:/ProgramData/AC/EmotionDating/Backend/result-fe/ave2.txt','a') as f2:
+        f2.write(ave2)
+    with open('D:/ProgramData/AC/EmotionDating/Backend/result-fe/ave3.txt','a') as f3:
+        f3.write(ave3)

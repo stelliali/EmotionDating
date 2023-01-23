@@ -1,156 +1,39 @@
-<!doctype html>
-<html lang="en">
-	
-<head>
-    <meta charset="utf-8">
-    <title>Emotion Dating</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="CSS/statementStyle1.css">
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <div id="user1Input">
-        <video class="input_video" width="300px" height="300px" controls></video>
-    </div>
-
-    <div id="user1Output">
-        <canvas class="output_canvas" width="300px" height="300px"></canvas>
-    </div>
-
-    <div id="countDown">
-        <h1><span id="show">Recording: 10 s</span></h1>
-    </div>
-
-    <div id="logo">
-        <img src="image/logo_dating.png" height="225x" width="264px*">
-    </div>
-
-    <div id="line"></div>
-
-    <div id="statement">
-        <p>Sex ist für mich nebensächlich.</p>
-    </div>
-
-    <div id="statementImg">
-        <img src="image/1.jfif" height="400px" width="600px">
-    </div>
-
-    <div id="buttons">
-        <button type="button" id="startRecording">Start Recording</button>
-        <button type="button" id="exportVideo">Next Question</button>
-    </div>
-    
-</body>
-
-<script>
-    const startBtn = document.querySelector("#startRecording"); 
-    const exportBtn = document.querySelector("#exportVideo");  
-    const videoEl = document.querySelector("video");
-    const videoElement = document.getElementsByClassName('input_video')[0];  
-    const canvasElement = document.getElementsByClassName('output_canvas')[0];
-    const canvasCtx = canvasElement.getContext('2d');
-
-    let videoData = [];
-    let cameraStream = null; 
-    let mediaRecorder = null; 
-
-    function onResults(results) {
-      canvasCtx.save();
-      canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-      canvasCtx.drawImage(
-          results.image, 0, 0, canvasElement.width, canvasElement.height);
-      if (results.multiFaceLandmarks) {
-        for (const landmarks of results.multiFaceLandmarks) {
-          drawConnectors(canvasCtx, landmarks, FACEMESH_TESSELATION,
-                         {color: '#C0C0C070', lineWidth: 1});
-          drawConnectors(canvasCtx, landmarks, FACEMESH_RIGHT_EYE, {color: '#FF3030'});
-          drawConnectors(canvasCtx, landmarks, FACEMESH_RIGHT_EYEBROW, {color: '#FF3030'});
-          drawConnectors(canvasCtx, landmarks, FACEMESH_RIGHT_IRIS, {color: '#FF3030'});
-          drawConnectors(canvasCtx, landmarks, FACEMESH_LEFT_EYE, {color: '#30FF30'});
-          drawConnectors(canvasCtx, landmarks, FACEMESH_LEFT_EYEBROW, {color: '#30FF30'});
-          drawConnectors(canvasCtx, landmarks, FACEMESH_LEFT_IRIS, {color: '#30FF30'});
-          drawConnectors(canvasCtx, landmarks, FACEMESH_FACE_OVAL, {color: '#E0E0E0'});
-          drawConnectors(canvasCtx, landmarks, FACEMESH_LIPS, {color: '#E0E0E0'});
-        }
-      }
-      canvasCtx.restore();
-    }
-    
-    const faceMesh = new FaceMesh({locateFile: (file) => {
-      return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
-    }});
-    faceMesh.setOptions({
-      maxNumFaces: 1,
-      refineLandmarks: true,
-      minDetectionConfidence: 0.5,
-      minTrackingConfidence: 0.5
-    });
-    faceMesh.onResults(onResults);
-
-    window.addEventListener('load', () => {
-        const constraints = {
-            audio: true,
-            video: {
-            width: 300,
-            height: 300
-            }
-        };
-        navigator.mediaDevices.getUserMedia(constraints).then(stream => {
-            cameraStream = stream;
-            videoEl.controls = false;
-            videoEl.srcObject = cameraStream;
-            videoEl.play();
-        }).catch(info => {
-            alert('error' + info);
-        });
-    });
-
-    startBtn.addEventListener('click', () => {
-        mediaRecorder = new MediaRecorder(cameraStream, {mimeType: 'video/webm'});
-        mediaRecorder.start();
-        console.log("recording started");
-        mediaRecorder.addEventListener('dataavailable', ev => {
-            videoData.push(ev.data);
-        });
-        mediaRecorder.addEventListener('stop', () => {
-            videoData = new Blob(videoData);
-        });
-
-        var t = 9;
-        setInterval(() => {
-            if (t < 0) {
-                console.log("recording stopped");
-                mediaRecorder.stop();
-                return;
-            }
-            document.getElementById('show').innerHTML = "Recording: "+ t + "s";
-            t--;
-        }, 1000);
-    });
-
-    exportBtn.addEventListener('click', () => {
-        if (videoData === null) return false;
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(videoData);
-        link.download = 'statement1.webm';
-        link.click();
-        location = "statement2.html";
-    });
-
-    
-    const camera = new Camera(videoElement, {
-      onFrame: async () => {
-        await faceMesh.send({image: videoElement});
-      },
-      width: 300,
-      height: 300
-    });
-    camera.start();
-
-</script>
-
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>使用jquery读取json格式文件</title>
+	</head>
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<body>
+		<div id="divframe">
+			<div class="loadTitle">
+				<input type="button" value="获取数据" id="btn" />
+			</div>
+			<div id="jsonTip"></div>
+		</div>
+	</body>
+	<script type="application/javascript">
+        //监听按钮点击事件
+		$("#btn").click(function() {
+            //使用getJSON读取userinfo.json文件中的数据
+			$.getJSON("a123.json", function(data) {
+				console.log(data);
+                //获取jsonTip的div
+				var $jsontip = $("#jsonTip");
+                //存储数据的变量 
+				var strHtml = "123";
+                //清空内容 
+				$jsontip.empty();
+                //将获取到的json格式数据遍历到div中
+				$.each(data, function(infoIndex, info) {
+					strHtml += "姓名：" + info["name"] + "<br>";
+					strHtml += "性别：" + info["sex"] + "<br>";
+					strHtml += "<hr>"
+				})
+                //显示处理后的数据 
+				$jsontip.html(strHtml);
+			})
+		})
+	</script>
 </html>

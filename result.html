@@ -20,18 +20,26 @@
         <img src="image/logo_dating.png" height="225x" width="264px*">
     </div>
 
-    <div id="sofie">
-        <img src="image/bild_sofie.png" height="330px" width="350px">
-        <p>Sofie: 72%</p>
+    <div id="jonas">
+        <img src="image/Jonas.jpg" height="330px" width="280px">
+        <p id="j">Jonas: </p>
+        <iframe src="Backend/result-fe/ave1.txt" width="60px" height="40px" frameborder="0"></iframe>
+        <img id="myimage" onclick="changeImage()" src="">
     </div>
 
-    <div id="qinzi">
-        <img src="image/bild_qinzi.jpg" height="330px" width="247.5px">
-        <p>Qinzi: 54%</p>
+    <div id="max">
+        <img src="image/max.jpg" height="330px" width="247.5px">
+        <p>Max: </p>
+        <iframe src="Backend/result-fe/ave2.txt" width="60px" height="40px" frameborder="0"></iframe>
     </div>
 
-    <div id="result">
-        <img src="Backend/result-fe/my_figureLive.png" height="640px" width="800px">
+    <div id="philipp">
+        <img src="image/Philipp.png" height="330px" width="320px">
+        <p>Philipp: </p>
+        <iframe src="Backend/result-fe/ave3.txt" width="60px" height="40px" frameborder="0"></iframe>
+        <!-- <img src="image/no.png" height="150px" width="150px">
+        <input type="file">
+        <p>Philipp: </p> -->
     </div>
     
 </body>
@@ -49,6 +57,19 @@
             }
         };
     })
+
+   
+    const input = document.querySelector('input[type=file]')
+   
+    input.addEventListener('change', ()=>{
+        const reader = new FileReader()
+        reader.readAsText(input.files[0],'utf8') 
+        reader.onload = ()=>{
+        document.body.innerHTML += reader.result 
+     }
+   }, false)
+
+
 </script>
 
 
