@@ -20,22 +20,22 @@
         <img src="{{ url_for('static', filename='image/logo_dating.png') }}" height="225x" width="264px*">
     </div>
 
-    <div id="sofie">
-        <img src="{{ url_for('static', filename='image/bild_sofie.png') }}" height="330px" width="350px">
-        <p>Sofie: 72%</p>
+    <div id="person1">
+        <img src="{{ url_for('static', filename='image/Jonas.jpg') }}" height="330px" width="350px">
+        <p>{{ names[0] }} : {{ percentages[0] }}</p>
     </div>
 
-    <div id="qinzi">
-        <img src="{{ url_for('static', filename='image/bild_qinzi.jpg') }}" height="330px" width="247.5px">
-        <p>Qinzi: 54%</p>
+    <div id="person2">
+        <img src="{{ url_for('static', filename='image/Max.jpg') }}" height="330px" width="247.5px">
+        <p>{{ names[1] }} : {{ percentages[1] }}</p>
     </div>
 
-    <div id="result">
-        <img src="{{ url_for('static', filename='Backend/result-fe/my_figureLive.png') }}" height="640px" width="800px">
+    <div id="person3">
+        <img src="{{ url_for('static', filename='image/Philipp.png') }}" height="330px" width="247.5px">
+        <p>{{ names[2] }} : {{ percentages[2] }}</p>
     </div>
 
 </body>
-
 
 <script src="{{ url_for('static', filename='js/result.js') }}"></script>
 

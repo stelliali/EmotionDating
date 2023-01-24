@@ -1,6 +1,7 @@
 from numpy import dot
 from numpy.linalg import norm
 import csv
+import requests
 
 def cosSim():  
     with open('D:/ProgramData/AC/EmotionDating/Backend/emotionvalues.csv', 'r') as vec:
@@ -77,6 +78,13 @@ def cosSim():
     print(ave1, ave2, ave3)
 
 
+    results = {
+        "Jonas": ave1,
+        "Max": ave2,
+        "Philip": ave3
+    }
+    r = requests.post("http://localhost:5000/upload_results", json=results)
+    print(r.status_code)
     with open('D:/ProgramData/AC/EmotionDating/Backend/result-fe/ave1.txt','a') as f1:
         f1.write(ave1)
     with open('D:/ProgramData/AC/EmotionDating/Backend/result-fe/ave2.txt','a') as f2:

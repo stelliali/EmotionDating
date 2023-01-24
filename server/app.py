@@ -29,6 +29,9 @@ statements = [
     ["Ich liebe romantische Gesten."]
 ]
 
+percentages = None
+names = None
+has_results = False
 
 @app.route("/", methods=['POST', 'GET'])
 def index():
@@ -69,7 +72,7 @@ def statement(id):
 
 @app.route("/result/", methods=['POST', 'GET'])
 def result():
-    return render_template("result.html")
+    return render_template("result.html", percentages=percentages, names=names)
 
 
 @app.route("/video/", methods=['POST'])
@@ -90,9 +93,29 @@ def video():
     filename = os.path.join(folder, f"statement_{statement_id}.webm")
     file.save(filename)
     new_statement_id = int(statement_id) + 1
+    # after last statement redirect to waiting room 
     if new_statement_id > len(statements):
-        return redirect(url_for('index'))
+        return redirect(url_for('waiting_room'))
     return redirect(url_for('statement', id=new_statement_id))
+
+
+@app.route("/waiting_room/")
+def waiting_room():
+    print(percentages)
+    if percentages != None:
+        return redirect(url_for('result')) 
+    else:
+        return render_template("waitRoom2.html")
+
+
+
+@app.route("/upload_results/", methods=['POST'])
+def upload_results():
+    global percentages, names
+    json = request.json
+    percentages = list(json.values())
+    names = list(json.keys())
+    return "OK"
 
 
 if __name__ == "__main__":
