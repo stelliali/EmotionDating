@@ -81,7 +81,7 @@ def cosSim():
     results = {
         "Jonas": ave1,
         "Max": ave2,
-        "Philip": ave3
+        "Philipp": ave3
     }
     r = requests.post("http://localhost:5000/upload_results", json=results)
     print(r.status_code)

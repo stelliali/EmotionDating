@@ -30,8 +30,7 @@ statements = [
 ]
 
 percentages = None
-names = None
-has_results = False
+all_partners = None
 
 @app.route("/", methods=['POST', 'GET'])
 def index():
@@ -67,10 +66,9 @@ def statement(id):
     elif request.method == 'POST':
         return redirect(url_for('result'))
 
-
 @app.route("/result/", methods=['POST', 'GET'])
 def result():
-    return render_template("result.html", percentages=percentages, names=names)
+    return render_template("result.html", partners=session["partners"])
 
 
 @app.route("/video/", methods=['POST'])
@@ -92,26 +90,45 @@ def video():
     new_statement_id = int(statement_id) + 1
     # after last statement redirect to waiting room 
     if new_statement_id > len(statements):
-        return redirect(url_for('waiting_room'))
+        return redirect(url_for('partner_selection'))
     return redirect(url_for('statement', id=new_statement_id))
+
+
+@app.route("/partner_selection/", methods=['GET', 'POST'])
+def partner_selection():
+    global all_partners, percentages
+    username = session.get("username")
+    
+    if request.method == 'GET':
+        session["partners"] = {}
+        session["partner_id"] = 0
+        partner_name = all_partners[0]
+        return render_template("partner.html", partner_name=partner_name, name=username)
+    elif request.method == 'POST':
+        current_partner_id = session.get("partner_id")
+        if request.form.get("yes"):
+            session["partners"][all_partners[current_partner_id]] = percentages[current_partner_id]
+        
+        new_partner_id = int(current_partner_id) + 1
+        if new_partner_id > len(all_partners) - 1:
+            return redirect(url_for('result'))
+        session["partner_id"] = new_partner_id
+        return render_template("partner.html", partner_name=all_partners[new_partner_id], name=username)
 
 
 @app.route("/waiting_room/")
 def waiting_room():
-    print(percentages)
-    if percentages != None:
-        return redirect(url_for('result')) 
-    else:
-        return render_template("waitRoom2.html")
-
+    if percentages is not None:
+        return redirect(url_for('partner_selection'))
+    return render_template("waitRoom2.html")
 
 
 @app.route("/upload_results/", methods=['POST'])
 def upload_results():
-    global percentages, names
+    global percentages, all_partners
     json = request.json
     percentages = list(json.values())
-    names = list(json.keys())
+    all_partners = list(json.keys())
     return "OK"
 
 
