@@ -37,11 +37,9 @@ has_results = False
 def index():
     if request.method == 'POST':
         username = request.form['usernameInput']
-        partner = request.form['partnerInput']
         if username is None:
             return render_template("index.html")
         session["username"] = username
-        session["partner"] = partner
         session["uuid"] = uuid.uuid4()
         return redirect(url_for('start'))
     elif request.method == 'GET':
@@ -80,7 +78,6 @@ def video():
     # get username + id
     username = session.get("username")
     statement_id = session.get("statement_id")
-    partner = session.get("partner")
     uuid = session.get("uuid")
     files = request.files
     if 'file' not in files:
@@ -88,7 +85,7 @@ def video():
         return redirect(url_for('statement', id=statement_id))
     file = files.get('file')
     # upload to own user video folder
-    folder = os.path.join(app.config['VIDEO_FOLDER'], username + "_" + partner + "_" + str(uuid)[:5])
+    folder = os.path.join(app.config['VIDEO_FOLDER'], username + "_" + "_" + str(uuid)[:5])
     os.makedirs(folder, exist_ok=True)
     filename = os.path.join(folder, f"statement_{statement_id}.webm")
     file.save(filename)
