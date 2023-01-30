@@ -21,14 +21,14 @@
     </div>
 
     {% for name, percentage in partners.items() %}
-        <div>
-            <img src="{{ url_for('static', filename='image/' + name.lower() + '.jpg') }}" height="330px" width="280px">
-            <p>{{ name }} : {{ percentage }}</p>
-            <p> Match: </p>
+        <div id="img_container">
+            <img id="partner" src="{{ url_for('static', filename='image/' + name.lower() + '.jpg') }}" height="330px" width="280px">
+            <p id="name">{{ name }} : {{ percentage }}%</p>
+            <p id="match"> Match: </p>
             <p>
-                {% if percentage >= 70 %} <img src="{{ url_for('static', filename='image/match.png') }}" height="280px" width="280px">
-                 {% elif (percentage >= 45) and (percentage <= 70) %} <img src="{{ url_for('static', filename='image/maybe.png') }}" height="280px" width="280px">
-                 {% else %} <img src="{{ url_for('static', filename='image/no.png') }}" height="280px" width="280px">
+                {% if percentage >= 70 %} <img id="match_img" src="{{ url_for('static', filename='image/match.png') }}" height="200px" width="200px">
+                 {% elif (percentage >= 45) and (percentage <= 70) %} <img id="match_img" src="{{ url_for('static', filename='image/maybe.png') }}" height="200px" width="200px">
+                 {% else %} <img id="match_img" src="{{ url_for('static', filename='image/no.png') }}" height="200px" width="200px">
                  {% endif %}
             </p>
         </div>

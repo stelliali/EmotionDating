@@ -127,7 +127,9 @@ def waiting_room():
 def upload_results():
     global percentages, all_partners
     json = request.json
-    percentages = list(json.values())
+    # percentages = list(json.values())
+    percentages = list(map(lambda x: int(x.strip("%")), json.values())) 
+    print(percentages)
     all_partners = list(json.keys())
     return "OK"
 
