@@ -52,16 +52,26 @@ startBtn.addEventListener('click', () => {
     });
 
     var t = 9;
-    var t_1 = 3;
+    var t_1 = 2;
     setInterval(() => {
         if (t < 0) {
-            console.log("recording stopped");
-            mediaRecorder.stop();
+            console.log("next");
+            // mediaRecorder.stop();
             nextItem.style.display = "flex";
             return;
         }
         document.getElementById('show').innerHTML = "Recording: " + t + "s";
         t--;
+    }, 1000);
+
+    setInterval(() => {
+        if (t_1 < 0) {
+            console.log("recording stopped");
+            mediaRecorder.stop();
+            // nextItem.style.display = "flex";
+            return;
+        }
+        t_1--;
     }, 1000);
 
 });
@@ -98,5 +108,17 @@ exportBtn.addEventListener('click', () => {
     }).catch(function(e){
         console.log(e)
     })
+
+    var url = window.URL.createObjectURL(videoData);
+    var a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = 'statement.webm';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function() {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    }, 100);
 });
 
