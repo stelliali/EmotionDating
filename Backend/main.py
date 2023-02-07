@@ -1,6 +1,6 @@
 from fer import Video
 from fer import FER
-from os.path import exists
+from os.path import exists, isfile
 import os
 import time
 import csv
@@ -8,6 +8,7 @@ from numpy import dot
 from numpy.linalg import norm
 import cosSimilaritylive
 import time
+import shutil
 
 
 print("Start")
@@ -17,6 +18,22 @@ dir = os.listdir(path)
 counter = 1
 length = 50
 while(True):
+    # while not exists("C:/Users/stell/Downloads/statement.webm"):
+    #     time.sleep(1)
+    # if isfile("C:/Users/stell/Downloads/statement.webm"):
+    #     shutil.copy('C:/Users/stell/Downloads/statement.webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement_1.webm')
+
+    # while not exists("C:/Users/stell/Downloads/statement (1).webm"):
+    #     time.sleep(1)
+    # if isfile("C:/Users/stell/Downloads/statement (1).webm"):
+    #     shutil.copy('C:/Users/stell/Downloads/statement (1).webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement_2.webm')
+
+    # while not exists("C:/Users/stell/Downloads/statement (2).webm"):
+    #     time.sleep(1)
+    # if isfile("C:/Users/stell/Downloads/statement (2).webm"):
+    #     shutil.copy('C:/Users/stell/Downloads/statement (2).webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement_3.webm')
+
+    # print("copy ready!")
     print("waiting")
     print(len(dir))
 
