@@ -25,11 +25,11 @@ def cosSim():
                 if index == 5:
                     v2_3 = rows    
         # person 2
-                if index == 39:
+                if index == 45:
                     v3_1 = rows  
-                if index == 40:
+                if index == 46:
                     v3_2 = rows  
-                if index == 41:
+                if index == 47:
                     v3_3 = rows     
         # person 3
                 if index == 56:

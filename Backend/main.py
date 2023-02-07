@@ -16,24 +16,24 @@ print("Start")
 path = "D:/ProgramData/AC/EmotionDating/Backend/input"
 dir = os.listdir(path)
 counter = 1
-length = 50
+length = 50 
 while(True):
-    # while not exists("C:/Users/stell/Downloads/statement.webm"):
-    #     time.sleep(1)
-    # if isfile("C:/Users/stell/Downloads/statement.webm"):
-    #     shutil.copy('C:/Users/stell/Downloads/statement.webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement_1.webm')
+    while not exists("D:/ProgramData/AC/statement.webm"):
+        time.sleep(1)
+    if isfile("D:/ProgramData/AC/statement.webm"):
+        shutil.copy('D:/ProgramData/AC/statement.webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement_1.webm')
 
-    # while not exists("C:/Users/stell/Downloads/statement (1).webm"):
-    #     time.sleep(1)
-    # if isfile("C:/Users/stell/Downloads/statement (1).webm"):
-    #     shutil.copy('C:/Users/stell/Downloads/statement (1).webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement_2.webm')
+    while not exists("D:/ProgramData/AC/statement (1).webm"):
+        time.sleep(1)
+    if isfile("D:/ProgramData/AC/statement (1).webm"):
+        shutil.copy('D:/ProgramData/AC/statement (1).webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement_2.webm')
 
-    # while not exists("C:/Users/stell/Downloads/statement (2).webm"):
-    #     time.sleep(1)
-    # if isfile("C:/Users/stell/Downloads/statement (2).webm"):
-    #     shutil.copy('C:/Users/stell/Downloads/statement (2).webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement_3.webm')
+    while not exists("D:/ProgramData/AC/statement (2).webm"):
+        time.sleep(1)
+    if isfile("D:/ProgramData/AC/statement (2).webm"):
+        shutil.copy('D:/ProgramData/AC/statement (2).webm', 'D:/ProgramData/AC/EmotionDating/Backend/input/statement_3.webm')
 
-    # print("copy ready!")
+    print("copy ready!")
     print("waiting")
     print(len(dir))
 
@@ -52,7 +52,7 @@ while(True):
 		
 		    # Analyze video, displaying the output
             detector = FER(mtcnn=True)
-            raw_data = video.analyze(detector, display=True)
+            raw_data = video.analyze(detector, display=False)
             df = video.to_pandas(raw_data)
             df = video.get_first_face(df)
             df = video.get_emotions(df)

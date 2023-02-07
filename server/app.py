@@ -68,7 +68,7 @@ def statement(id):
 
 @app.route("/result/", methods=['POST', 'GET'])
 def result():
-    return render_template("result.html", partners=session["partners"])
+    return render_template("result.html", partners=session["partners"], name=session.get("username"))
 
 
 @app.route("/video/", methods=['POST'])
