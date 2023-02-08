@@ -4,40 +4,56 @@
 <head>
     <meta charset="utf-8">
     <title>Emotion Dating</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/resultStyle.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/partner.css') }} ">
 </head>
 
 <body>
-    <div id="indexContent">
-        <p>Dein Ergebnis! Mit diesen Matches hast du folgende Scores:</p>
-    </div>
+<div id="home-container">
+    <div id="content">
+        <div id="sidebar-line">
+            <div id="sidebar">
+                <h1><span id="userName">Username: {{ name }}</span></h1>
 
-    <div id="username">
-        <h1><span id="userName">Username: </span></h1>
-    </div>
-
-    <div id="logo">
-        <img src="{{ url_for('static', filename='image/logo_dating.png') }}" height="225x" width="264px*">
-    </div>
-
-    {% for name, percentage in partners.items() %}
-        <div id="img_container">
-            <img id="partner" src="{{ url_for('static', filename='image/' + name.lower() + '.jpg') }}" height="330px" width="280px">
-            <p id="name">{{ name }} : {{ percentage }}%</p>
-            <p id="match"> Match: </p>
-            <p>
-                {% if percentage >= 70 %} <img id="match_img" src="{{ url_for('static', filename='image/match.png') }}" height="200px" width="200px">
-                 {% elif (percentage >= 45) and (percentage <= 70) %} <img id="match_img" src="{{ url_for('static', filename='image/maybe.png') }}" height="200px" width="200px">
-                 {% else %} <img id="match_img" src="{{ url_for('static', filename='image/no.png') }}" height="200px" width="200px">
-                 {% endif %}
-            </p>
+                <div id="logo">
+                    <img src="{{ url_for('static', filename='image/logo_dating.png') }}" width="178px">
+                </div>
+            </div>
+            <div id="line"></div>
         </div>
-    {% endfor %}
+        <!-- get new items here -->
+
+        <div id="statement-container" style="width: 100%">
+            <h1 id="statement-heading">Dein Ergebnis! </h1>
+            <div id="statement_block">
+                <div id="statement">
+                    <p>Mit diesen Matches hast du folgende Scores:</p>
+                </div>
+                {% for name, percentage in partners.items() %}
+                <div class="img_container">
+                    <img id="partner" src="{{ url_for('static', filename='image/' + name.lower() + '.jpg') }}" height="330px" width="280px">
+                    <div class="match-items">
+                        <p id="name">{{ name }}: {{ percentage }}%</p>
+                        <p id="match"> Match: </p>
+                        <p>
+                            {% if percentage >= 70 %} <img id="match_img" src="{{ url_for('static', filename='image/match.png') }}" height="200px" width="200px">
+                            {% elif (percentage >= 45) and (percentage <= 70) %} <img id="match_img" src="{{ url_for('static', filename='image/maybe.png') }}" height="200px" width="200px">
+                            {% else %} <img id="match_img" src="{{ url_for('static', filename='image/no.png') }}" height="200px" width="200px">
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
 
 
+    </div>
+</div>
 </body>
 
-<script src="{{ url_for('static', filename='js/result.js') }}"></script>
-
+<script src="{{ url_for('static', filename='js/partner.js') }} "></script>
 
 </html>

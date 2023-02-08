@@ -53,25 +53,16 @@ startBtn.addEventListener('click', () => {
 
     var t = 9;
     var t_1 = 2;
-    setInterval(() => {
+    let id = setInterval(() => {
         if (t < 0) {
-            console.log("next");
-            // mediaRecorder.stop();
+            console.log("recording stopped");
+            mediaRecorder.stop();
             nextItem.style.display = "flex";
+            clearInterval(id);
             return;
         }
         document.getElementById('show').innerHTML = "Recording: " + t + "s";
         t--;
-    }, 1000);
-
-    setInterval(() => {
-        if (t_1 < 0) {
-            console.log("recording stopped");
-            mediaRecorder.stop();
-            // nextItem.style.display = "flex";
-            return;
-        }
-        t_1--;
     }, 1000);
 
 });

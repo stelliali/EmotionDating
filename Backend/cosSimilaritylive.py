@@ -4,7 +4,7 @@ import csv
 import requests
 
 def cosSim():  
-    with open('D:/ProgramData/AC/EmotionDating/Backend/emotionvalues.csv', 'r') as vec:
+    with open('emotionvalues.csv', 'r') as vec:
             reader = list(csv.reader(vec))
             for index, rows in enumerate(reader):
                 if index == 1:
@@ -15,7 +15,7 @@ def cosSim():
                     v1_3 = rows
                 
         # person 1
-    with open('D:/ProgramData/AC/EmotionDating/Backend/user_study_vecs.csv', 'r') as vec:
+    with open('user_study_vecs.csv', 'r') as vec:
             reader = list(csv.reader(vec))
             for index, rows in enumerate(reader):
                 if index == 3:
@@ -25,11 +25,11 @@ def cosSim():
                 if index == 5:
                     v2_3 = rows    
         # person 2
-                if index == 39:
+                if index == 45:
                     v3_1 = rows  
-                if index == 40:
+                if index == 46:
                     v3_2 = rows  
-                if index == 41:
+                if index == 47:
                     v3_3 = rows     
         # person 3
                 if index == 56:
@@ -83,11 +83,12 @@ def cosSim():
         "Max": ave2,
         "Philipp": ave3
     }
+    print(results)
     r = requests.post("http://localhost:5000/upload_results", json=results)
     print(r.status_code)
-    with open('D:/ProgramData/AC/EmotionDating/Backend/result-fe/ave1.txt','a') as f1:
+    with open('result-fe/ave1.txt','a') as f1:
         f1.write(ave1)
-    with open('D:/ProgramData/AC/EmotionDating/Backend/result-fe/ave2.txt','a') as f2:
+    with open('result-fe/ave2.txt','a') as f2:
         f2.write(ave2)
-    with open('D:/ProgramData/AC/EmotionDating/Backend/result-fe/ave3.txt','a') as f3:
+    with open('result-fe/ave3.txt','a') as f3:
         f3.write(ave3)

@@ -68,7 +68,7 @@ def statement(id):
 
 @app.route("/result/", methods=['POST', 'GET'])
 def result():
-    return render_template("result.html", partners=session["partners"])
+    return render_template("result.html", partners=session["partners"], name=session.get("username"))
 
 
 @app.route("/video/", methods=['POST'])
@@ -90,7 +90,7 @@ def video():
     new_statement_id = int(statement_id) + 1
     # after last statement redirect to waiting room 
     if new_statement_id > len(statements):
-        return redirect(url_for('partner_selection'))
+        return redirect(url_for('waiting_room'))
     return redirect(url_for('statement', id=new_statement_id))
 
 

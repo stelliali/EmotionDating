@@ -24,22 +24,22 @@
             <!-- get new items here -->
 
             <div id="statement-container" style="width: 100%">
-                <div id="person1">
-                    <img src="{{ url_for('static', filename='image/' + partner_name.lower() + '.jpg') }}" height="330px" width="280px">
-                    <p>{{ partner_name }}</p>
+                <h1 id="statement-heading">Potenzielle Partner</h1>
+                <div id="statement_block">
+                    <div id="statement">
+                        <p>{{ partner_name }}</p>
+                    </div>
+                    <div id="statementImg">
+                        <img src="{{ url_for('static', filename='image/' + partner_name.lower() + '.jpg') }}" height="330px" >
+                    </div>
+                    <form method="post">
+                        <div class="center">
+                            <button type="submit" value="yes" name="yes" class="choose-buttons">Ja</button>
+                            <button type="submit" value="no" name="no" class="choose-buttons">Nein</button>
+                        </div>
+                    </form>
                 </div>
 
-
-                    <!--
-                        <button type="button" id="yes" onclick="yes()">Yes</button>
-                        <button type="button" id="no" onclick="no()">No</button>
-                    -->
-                     <form method="post">
-                        <div class="center">
-                            <button type="submit" value="yes" name="yes">Yes</button>
-                            <button type="submit" value="no" name="no">No</button>
-                    </div>
-                    </form>
             </div>
 
            
