@@ -3,6 +3,7 @@ from flask import session
 import uuid
 from flask_cors import CORS, cross_origin
 import os
+import json
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -68,7 +69,9 @@ def statement(id):
 
 @app.route("/result/", methods=['POST', 'GET'])
 def result():
-    return render_template("result.html", partners=session["partners"], name=session.get("username"))
+    partners = request.args['partner_list']
+    partners = json.loads(partners)
+    return render_template("result.html", partners=partners, name=session.get("username"))
 
 
 @app.route("/video/", methods=['POST'])
@@ -111,7 +114,8 @@ def partner_selection():
         
         new_partner_id = int(current_partner_id) + 1
         if new_partner_id > len(all_partners) - 1:
-            return redirect(url_for('result'))
+            partners = json.dumps(session["partners"])
+            return redirect(url_for('result', partner_list=partners))
         session["partner_id"] = new_partner_id
         return render_template("partner.html", partner_name=all_partners[new_partner_id], name=username)
 
